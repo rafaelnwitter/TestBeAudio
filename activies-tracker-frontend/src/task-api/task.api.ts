@@ -1,4 +1,6 @@
 import { TaskDTO } from "./dto/task.dto";
+import { CreateTaskDTO } from "./dto/create-task.dto";
+import { UpdateTaskDTO } from "./dto/update-task.dto";
 
 export class TaskAPI {
     public static async findAll(): Promise<TaskDTO[]> {
@@ -10,4 +12,35 @@ export class TaskAPI {
 
         return data;
     }
+
+    public static async createOne(createRequest: CreateTaskDTO): Promise<TaskDTO> {
+        const resp = await fetch('http://localhost:3000/tasks', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(createRequest),
+        })
+
+        const data = await resp.json();
+
+        return data;
+    }
+
+    public static async deleteOne(taskId: number) {
+        const resp = await fetch(`http://localhost:3000/tasks/${taskId}`, {
+            method: "DELETE",
+        })
+    }
+
+    public static async updateOne(taskId: number, updateRequest: UpdateTaskDTO) {
+        const resp = await fetch(`http://localhost:3000/tasks/${taskId}`, {
+            method: "PATCH",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updateRequest),
+        })
+    }
+
 }
