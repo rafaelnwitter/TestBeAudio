@@ -32,7 +32,7 @@ function App() {
   }
 
   const onTaskEdotBtnClicked = (task: TaskDTO) => {
-
+    return 0;
   }
 
   useEffect(() => {
