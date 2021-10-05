@@ -66,7 +66,9 @@ function App() {
           <Button
             variant="contained" 
             color="primary" 
-            onClick={() => setCreateTaskModalOpen(true)}>Create Task</Button>
+            onClick={() => setCreateTaskModalOpen(true)}>
+              Create Task
+          </Button>
         </Toolbar>
       </AppBar>
       

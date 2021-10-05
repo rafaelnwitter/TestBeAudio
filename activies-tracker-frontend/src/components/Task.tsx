@@ -1,5 +1,5 @@
 import React from 'react';
-import { TaskDTO, TaskStatus } from "../task-api/dto/task.dto";
+import { TaskDTO, TaskStatus, TaskType } from "../task-api/dto/task.dto";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -39,6 +39,23 @@ const Task = ({ data, onTaskDelete, onTaskUpdate }: Props) => {
         }
         return text
     }
+
+    const getTaskTypeToString = (type: TaskType) => {
+        let text: string;
+
+        switch(type){
+            case TaskType.Development:
+                text = "Development";
+                break;
+            case TaskType.Support:
+                text = "Support";
+                break;
+            default:
+                text = "";
+        }
+        return text
+    }
+
     return (
         <Card variant="outlined">
             <CardContent>
@@ -52,6 +69,8 @@ const Task = ({ data, onTaskDelete, onTaskUpdate }: Props) => {
                   variant="body2" component="p">
                     {data.description}
                 </Typography>
+                <Chip label={getTaskTypeToString(data.type)} />
+                <br/>
                 <Chip label={getTaskStatusToString(data.status)} />
             </CardContent>
             <CardActions>
